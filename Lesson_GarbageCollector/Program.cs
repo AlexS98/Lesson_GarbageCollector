@@ -20,9 +20,9 @@ namespace Lesson_GarbageCollector
                     );
             }
 
-            for (int i = 0; i < 20000; i++)
+            for (int i = 0; i < 200000; i++)
             {
-                var test = new TestClass($"object{i}");
+                var test = new TestClass(i);
             }
         }
     }

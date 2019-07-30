@@ -1,26 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Lesson_GarbageCollector
 {
     public class TestClass : IDisposable
     {
-        public string Name { get; set; }
+        public long Number { get; set; }
 
-        public TestClass(string name)
+        public TestClass(long number)
         {
-            Name = name;
+            Number = number;
         }
 
         public void Dispose()
         {
-            Console.WriteLine($"\t{Name} disposed.");
+            Console.WriteLine($"\t{Number} disposed.");
         }
 
         ~TestClass()
         {
-            Console.WriteLine($"\t{Name} finalized.");
+            if (Math.Abs(FinalizingInfo.LastNumber - Number) == 1)
+            {
+                FinalizingInfo.LastNumber = Number;
+                FinalizingInfo.Count++;
+            }
+            else
+            {
+                Console.WriteLine((FinalizingInfo.Count > 0) ? $"Count - {FinalizingInfo.Count}" : "");
+                Console.Write($"\t{Number} finalized. ");
+                FinalizingInfo.LastNumber = Number;
+                FinalizingInfo.Count = 0;
+            }
         }
     }
 }
