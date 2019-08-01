@@ -24,6 +24,18 @@ namespace Lesson_GarbageCollector
                     .Where(x => x != null)
                     .ToList()
                     .ForEach(x => x.Dispose());
+                /*
+                 * string dataFromFile = streamReader.ReadToEnd();
+                 * string[] splittedData = dataFromFile.Split(';');
+                 * foreach (string i in splittedData)
+                 * {
+                 *     if (long.TryParse(i, out long l))
+                 *     {
+                 *         TestClass testEntity = new TestClass(l);
+                 *         testEntity.Dispose();
+                 *     }
+                 * }
+                 */
                 var endMemory = GC.GetTotalMemory(true);
                 Console.WriteLine($"Total memory: {endMemory - startMemory}");
             }
