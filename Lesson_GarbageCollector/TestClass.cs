@@ -26,7 +26,8 @@ namespace Lesson_GarbageCollector
             }
             else
             {
-                Console.WriteLine((FinalizingInfo.Count > 1) ? $"Count - {FinalizingInfo.Count}" : "");
+                Console.WriteLine((FinalizingInfo.Count > 1) 
+                    ? $"Count - {FinalizingInfo.Count}" : "");
                 Console.Write($"{Number} finalized. ");
                 FinalizingInfo.LastNumber = Number;
                 FinalizingInfo.Total++;
