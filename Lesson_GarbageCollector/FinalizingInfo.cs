@@ -8,5 +8,6 @@ namespace Lesson_GarbageCollector
     {
         public static int Count { get; set; } = 0;
         public static long LastNumber { get; set; }
+        public static long Total { get; set; }
     }
 }

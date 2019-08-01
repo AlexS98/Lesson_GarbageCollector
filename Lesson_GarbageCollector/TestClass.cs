@@ -13,7 +13,7 @@ namespace Lesson_GarbageCollector
 
         public void Dispose()
         {
-            Console.WriteLine($"\t{Number} disposed.");
+            Console.WriteLine($"{Number} disposed.");
         }
 
         ~TestClass()
@@ -21,14 +21,16 @@ namespace Lesson_GarbageCollector
             if (Math.Abs(FinalizingInfo.LastNumber - Number) == 1)
             {
                 FinalizingInfo.LastNumber = Number;
+                FinalizingInfo.Total++;
                 FinalizingInfo.Count++;
             }
             else
             {
-                Console.WriteLine((FinalizingInfo.Count > 0) ? $"Count - {FinalizingInfo.Count}" : "");
-                Console.Write($"\t{Number} finalized. ");
+                Console.WriteLine((FinalizingInfo.Count > 1) ? $"Count - {FinalizingInfo.Count}" : "");
+                Console.Write($"{Number} finalized. ");
                 FinalizingInfo.LastNumber = Number;
-                FinalizingInfo.Count = 0;
+                FinalizingInfo.Total++;
+                FinalizingInfo.Count = 1;
             }
         }
     }

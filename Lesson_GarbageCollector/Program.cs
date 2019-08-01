@@ -8,22 +8,24 @@ namespace Lesson_GarbageCollector
     {
         static void Main(string[] args)
         {
-            using (StreamReader streamReader = new StreamReader("example.txt"))
+            //put example.txt into Lesson_GarbageCollector\bin\Debug\netcoreapp2.2, data separator - ';'
+            using (var streamReader = new StreamReader("example.txt"))
             {
-                Console.WriteLine(
-                    streamReader
-                        .ReadToEnd()
-                        .Split(';')
-                        .ToList()
-                        .Select(x => long.TryParse(x, out long l) ? l : 0)
-                        .Sum()
-                    );
+                streamReader
+                    .ReadToEnd()
+                    .Split(';')
+                    .ToList()
+                    .Select(x => long.TryParse(x, out long l) ? new TestClass(l) : null)
+                    .Where(x => x != null)
+                    .ToList()
+                    .ForEach(x => x.Dispose());
             }
 
             for (int i = 0; i < 200000; i++)
             {
                 var test = new TestClass(i);
             }
+            Console.WriteLine($"\n Total finalized - {FinalizingInfo.Total}");
         }
     }
 }
